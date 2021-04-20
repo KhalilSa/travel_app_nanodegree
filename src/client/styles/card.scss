@@ -1,0 +1,35 @@
+@import "variables";
+.card {
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    grid-gap: 2rem;
+    grid-template-rows: auto;
+    grid-template-areas: "img main main main";
+    padding: 16px;
+    min-height: 300px;
+    border-radius: 4px;
+    background-color: rgba($color: $green, $alpha: 0.35);
+}
+
+@media screen and (max-width: 450px) {
+    .card {
+        grid-template-areas: "img img" "main main";
+    }
+}
+
+.card-img {
+    grid-area: img;
+    img {
+        width: 100%;
+    }
+}
+
+.card-main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: start;
+    align-items: stretch;
+    text-align: left;
+}

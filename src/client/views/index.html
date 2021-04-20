@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Travel app help you plan for your next travels by giving you weather data">
+    <meta name="keywords" content="Travel App">
+    <meta name="author" content="Khalil Sa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+    <link rel="shortcut icon" href="./media/travel.png">
+</head>
+
+<body>
+    <header class="header">
+        <h2>Travel Planner</h2>
+        <div class="tooltip">
+            <button class="add-btn icon-btn" id="add-trip">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Add Trip</div>
+            </button>
+            <span class="tooltip-txt">Click To Add New Trip</span>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <form id="form" onsubmit="return Client.handleSubmit(event)">
+                <div class="form-group">
+                    <label for="location">Trip To: </label>
+                    <input type="text" id="location" placeholder="Enter Location"></input>
+                </div>
+                <div class="form-group">
+                    <label for="start">Departing: </label>
+                    <input type="date" id="start" name="trip-start"></input>
+                </div>
+                <div class="form-group">
+                    <label for="finish">Return:</label>
+                    <input type="date" id="finish" name="trip-finish"></input>
+                </div>
+                <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+            </form>
+        </section>
+
+        <section>
+            <strong class="re-st">Trips Found:</strong>
+            <div id="results" class="card">
+                <div class="card-img">
+                    <img src="./media/travelbg.jpg">
+                </div>
+                <div class="card-main">
+                    <h4>Trip To: Paris</h4>
+                    <strong>Departure: Monday, Apr 20, 2021</strong>
+                    <strong>Return: Monday, Apr 25, 2021</strong>
+                    <strong>Duration: 5 days</strong>
+                    <div class="btn-group">
+                        <button class="btn btn-save">Save Trip</button>
+                        <button class="btn btn-remove">Remove Trip</button>
+                    </div>
+                    <span>Paris, France is 220 days away</span>
+                    <span>Typical weather for then is:</span>
+                    <span class="small-txt">High - 45, Low - 35</span>
+                    <span class="small-txt">Mostly cloud throughout the day</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span>Travel Planner By Khalil Sa &copy 2021</span>
+        <span class="r-ft-sp">Using Geonames, Weatherbit, And Pixabay APIs</span>
+    </footer>
+
+    <!-- <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script> -->
+
+</body>
+
+</html>

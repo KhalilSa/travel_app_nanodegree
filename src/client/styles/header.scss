@@ -1,0 +1,178 @@
+@import "variables";
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 40px;
+    margin-top: 2rem;
+    background-color: transparent;
+    margin-top: 40vh;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    .tooltip-txt {
+        visibility: hidden;
+        width: 200px;
+        background-color: $green;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 10px;
+        right: 115%;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent $green;
+        }
+        animation: fade 8s ease-in-out;
+    }
+}
+
+// add button styling from https://codepen.io/tawfiqin/pen/OdgEJM
+.icon-btn {
+    width: 50px;
+    height: 50px;
+    border: 1px solid $blured-blue;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.2s ease-in-out;
+    &:focus {
+        outline: none;
+    }
+}
+
+.add-btn {
+    &:active,
+    &:hover {
+        width: 120px;
+        .btn-txt {
+            opacity: 1;
+        }
+        .add-icon::before {
+            left: 15px;
+            height: 4px;
+            top: calc(50% - 2px);
+        }
+        .add-icon::after {
+            right: 15px;
+            height: 4px;
+            top: calc(50% - 2px);
+        }
+    }
+    &:active {
+        box-shadow: 1px 1px 1px 4px rgba($color: $blue, $alpha: 0.15);
+    }
+    &::before,
+    &::after {
+        transition: width 0.2s ease-in-out, border-radius 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        height: 4px;
+        width: 10px;
+        top: calc(50% - 2px);
+        background: $blue;
+    }
+    &::before {
+        left: 14px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    &::after {
+        right: 14px;
+        overflow: hidden;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
+    &:active::before,
+    &:hover::before,
+    &:active::after,
+    &:hover::after {
+        width: 4px;
+        border-radius: 2px;
+    }
+}
+
+.btn-txt {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.add-icon {
+    &::after,
+    &::before {
+        transition: all 0.2s ease-in-out;
+        content: "";
+        position: absolute;
+        height: 20px;
+        width: 2px;
+        top: calc(50% - 10px);
+        background: $blue;
+        overflow: hidden;
+    }
+    &::before {
+        left: 22px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    &::after {
+        right: 22px;
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .add-btn {
+        align-self: center;
+    }
+    .tooltip-txt {
+        display: none;
+        animation: none;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+    20% {
+        opacity: 0.9;
+        right: 120%;
+    }
+    43% {
+        opacity: 1;
+        right: 110%;
+    }
+    46% {
+        right: 100%;
+    }
+    48% {
+        right: 110%;
+    }
+    50% {
+        right: 115%;
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+        right: 115%;
+        visibility: visible;
+    }
+}

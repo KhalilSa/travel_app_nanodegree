@@ -1,0 +1,22 @@
+@import "variables";
+footer {
+    padding: 8px;
+    background-color: $dark-blue;
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    span {
+        font-size: 0.75em;
+    }
+}
+
+.r-ft-sp {
+    margin-left: 40px;
+}
+
+@media screen and (max-width: 650px) {
+    footer {
+        justify-content: center;
+    }
+}

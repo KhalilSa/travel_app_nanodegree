@@ -1,0 +1,100 @@
+@import "variables";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.strong-txt {
+    font-weight: bold;
+    transition: all 0.2s ease-in-out 0s;
+    color: $dark-blue;
+}
+
+h1 {
+    font-size: 4.4rem;
+    line-height: 80px;
+    letter-spacing: -0.03em;
+    margin-bottom: 48px;
+}
+
+h2 {
+    font-size: 3.6rem;
+    line-height: 49px;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+}
+
+h3 {
+    font-size: 2.8rem;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+}
+
+h4 {
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 23px;
+    letter-spacing: 0.005em;
+    margin: 18px 0 18px 0;
+}
+
+.strong-txt {
+    font-size: 1.4rem;
+    line-height: 19px;
+}
+
+p,
+.body-txt {
+    font-size: 1.4rem;
+}
+
+p {
+    max-width: 650px;
+    margin: 0 12px 1.5em 0;
+}
+
+em,
+.italic-txt {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 19px;
+}
+
+.button-txt {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 13px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.small-txt {
+    font-size: 0.8rem;
+    line-height: 12px;
+    letter-spacing: 0.03em;
+}
+
+.caption-txt {
+    font-size: 1.4rem;
+    line-height: 13px;
+    letter-spacing: 0.02em;
+}
+
+a,
+.link-txt {
+    font-weight: bold;
+    line-height: 19px;
+    text-decoration-line: underline;
+    &:hover,
+    &:active {
+        cursor: pointer;
+    }
+}
+
+a {
+    text-decoration: none;
+}
