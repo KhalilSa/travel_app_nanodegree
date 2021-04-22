@@ -1,5 +1,6 @@
 import { handleSubmit } from './js/formHandler'
 import { updateUI } from './js/updateUI'
+import { checkDate, daysBetween } from './js/utils'
 import './media/travel.png'
 import './media/travelbg.jpg'
 
@@ -13,5 +14,7 @@ import './styles/typography.scss'
 
 export {
     handleSubmit,
-    updateUI
+    updateUI,
+    checkDate,
+    daysBetween
 }
