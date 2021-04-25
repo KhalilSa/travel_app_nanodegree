@@ -10,7 +10,7 @@ const Dotenv = require('dotenv-webpack')
 module.exports = {
     entry: path.join(__dirname, 'src/client/index.js'),
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
         libraryTarget: 'var',
         library: 'Client'

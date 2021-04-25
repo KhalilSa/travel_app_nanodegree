@@ -9,6 +9,8 @@ module.exports = {
     devtool: 'source-map',
     stats: 'verbose',
     output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
         libraryTarget: 'var',
         library: 'Client'
     },
@@ -44,7 +46,8 @@ module.exports = {
             verbose: true,
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
-            protectWebpackAssets: false
+            protectWebpackAssets: false,
+            cleanOnceBeforeBuildPatterns: [path.join(__dirname, "dist/**/*")],
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',

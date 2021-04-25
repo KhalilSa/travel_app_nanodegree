@@ -1,6 +1,7 @@
-import { handleSubmit } from './js/formHandler'
+import { handleSubmit, saveBtnHandler } from './js/formHandler'
 import { updateUI } from './js/updateUI'
 import { checkDate, daysBetween } from './js/utils'
+import { loadSaved, savedTripsElm, getData } from './js/loadSaved'
 import './media/travel.png'
 import './media/travelbg.jpg'
 
@@ -16,5 +17,9 @@ export {
     handleSubmit,
     updateUI,
     checkDate,
-    daysBetween
+    daysBetween,
+    saveBtnHandler,
+    loadSaved,
+    savedTripsElm,
+    getData
 }

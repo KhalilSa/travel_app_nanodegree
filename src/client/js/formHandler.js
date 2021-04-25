@@ -1,23 +1,36 @@
-import { post } from "jquery"
-import { updateUI } from "./updateUI"
+const alertify = require('alertifyjs')
+const lodash = require('lodash')
 
-// animations slide up for the header and fade in/ fade out for the form
-$(() => {
+document.addEventListener('DOMContentLoaded', () => {
+    // animations slide up for the header and fade in/ fade out for the form
     $('#add-trip').click(() => {
-        $('#form').toggle('fast')
-        $('header').first().animate({ marginTop: 0 }, 500, () => {
-            $(this).css({ marginTop: '' })
+            $('#form').toggle('fast')
+            $('header').first().animate({ marginTop: 0 }, 500, () => {
+                $(this).css({ marginTop: '' })
+            })
         })
-    })
-
-    $('.btn-remove').click(() => {
-        $('.card').hide('fast', () => {
-            $(this).remove()
+        // Clear local storage when the clear All div is clicked
+    setTimeout(() => {
+        document.getElementById('clear').addEventListener('click', (event) => {
+            event.preventDefault()
+            $(event.target).hide('fast')
+            $('#saved-trips').hide('fast')
+            $('#sv-tr').hide('fast')
+            Client.getData('http://localhost:8081/clear').then(res => {
+                alertify.success(res.status)
+            })
+            localStorage.clear()
         })
-    })
+    }, 3000)
+    $(document).on('', (event) => {
+            event.preventDefault()
+            $('.re-st').first().hide('fast')
+        })
+        // Load Saved
+    Client.loadSaved()
 })
 
-const trip = {}
+let trip = {}
 
 async function handleSubmit(event) {
     event.preventDefault()
@@ -40,6 +53,7 @@ async function handleSubmit(event) {
         postData('http://localhost:8081/loc', { place: locationName })
             .then(info => {
                 trip.location += `, ${info.cn}`
+                trip.cc = info.cc
                 return info
             })
             .then(loc =>
@@ -53,9 +67,9 @@ async function handleSubmit(event) {
                     trip.temp = data.data[0].temp
                     trip.wd = data.data[0].weather.description
                 } else if (trip.daysLeft > 16) {
-                    trip.win = data.data[16]["wind_spd"]
-                    trip.temp = data.data[16].temp
-                    trip.wd = data.data[16].weather.description
+                    trip.win = data.data[15]["wind_spd"]
+                    trip.temp = data.data[15].temp
+                    trip.wd = data.data[15].weather.description
                 } else {
                     trip.win = data.data[trip.daysLeft]["wind_spd"]
                     trip.temp = data.data[trip.daysLeft].temp
@@ -66,14 +80,17 @@ async function handleSubmit(event) {
                     })
                     .then(imgURL => {
                         trip.imgSrc = imgURL.url
-                        updateUI(trip)
+                        trip.abs = imgURL.abs
+                        Client.updateUI(trip)
                     })
             })
             .catch(e => console.log(`Error: ${e}`))
     } else {
-        alert("You need to enter some location and date before submiting")
+        alertify
+            .alert("You need to enter some location and date before submiting", function() {
+                alertify.message('Please, Fill The Form First');
+            })
     }
-    console.log('trip', trip)
 }
 
 // async post function
@@ -95,4 +112,32 @@ async function postData(url = '', dataObj = {}) {
     }
 }
 
-export { handleSubmit }
+// save Button Event Handler
+let tripsArray = localStorage.getItem('trips') ?
+    JSON.parse(localStorage.getItem('trips')) : []
+localStorage.setItem('trips', JSON.stringify(tripsArray))
+
+function saveBtnHandler(trp) {
+    const saveBtn = document.querySelector('#save-btn')
+    saveBtn.addEventListener('click', () => {
+        postData('http://localhost:8081/addtrip', trp)
+            .then((res) => {
+                if (res.code === 201) {
+                    alertify.success('Trip Saved Successfully!')
+                    Client.updateUI(trip, Client.savedTripsElm)
+                    let tripClone = lodash.cloneDeep(trip)
+                    tripsArray.push(tripClone)
+                    console.log(tripsArray)
+                    localStorage.setItem('trips', JSON.stringify(tripsArray))
+                } else {
+                    alertify.message('Trip Already Saved')
+                }
+            })
+            .catch((e) => {
+                console.log(`Error: ${e}`)
+                alertify.error(`Error ${e.message}`)
+            })
+    })
+}
+
+export { handleSubmit, saveBtnHandler }

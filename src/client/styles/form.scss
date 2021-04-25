@@ -16,7 +16,7 @@ input[type=password],
 input[type=date],
 textarea {
     border: 1px solid $blured-blue;
-    border-radius: 4px;
+    border-radius: $border-radius;
     color: $blured-blue;
     vertical-align: middle;
     min-width: 300px;
@@ -53,18 +53,21 @@ input[type=submit] {
     box-sizing: border-box;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: $ff-roboto;
     font-size: 1.1em;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 2px;
     text-align: center;
     position: relative;
     color: white;
+    cursor: pointer;
     box-shadow: inset 0 -0.6em 1em -0.35em rgba($color: $blue, $alpha: 0.18), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba($color: $blue, $alpha: 0.12);
     &:active {
-        box-shadow: inset 0 0.6em 2em -0.3em rgba($color: $blue, $alpha: 0.18), inset 0 0 0em 0.05em rgba($color: $blue, $alpha: 0.15);
+        box-shadow: inset 0 0.6em 2em -0.45em rgba($color: $blue, $alpha: 0.2), inset 0 0 0 0.05em rgba($color: $blue, $alpha: 0.17);
+        animation-play-state: paused;
+        transform: scale(0.95);
     }
     animation: bounce 6s infinite ease-in-out;
+    animation-play-state: running;
 }
 
 @media (max-width: 320px) {
@@ -89,9 +92,10 @@ input[type=submit] {
 .btn {
     margin: 2px;
     padding: 10px 24px;
-    border-radius: 8px;
+    border-radius: $border-radius * 2;
     text-decoration: none;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .btn-group {
@@ -105,7 +109,7 @@ input[type=submit] {
     &:hover {
         transform: scale(1.1);
         box-shadow: 0 0 2px 5px rgba($color: $green, $alpha: 0.14);
-        margin-right: 8px;
+        margin-right: $spacing;
     }
     &:active {
         transform: scale(0.95);

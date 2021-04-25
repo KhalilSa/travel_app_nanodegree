@@ -5,23 +5,39 @@
     grid-gap: 2rem;
     grid-template-rows: auto;
     grid-template-areas: "img main main main";
-    padding: 16px;
+    padding: $border-radius;
     min-height: 300px;
-    border-radius: 4px;
+    border-radius: $spacing / 2;
     background-color: rgba($color: $green, $alpha: 0.35);
     text-transform: capitalize;
+    margin-top: $spacing;
+}
+
+.card-img {
+    grid-area: img;
+    position: relative;
+    img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        margin-left: 12px;
+    }
 }
 
 @media screen and (max-width: 450px) {
     .card {
         grid-template-areas: "img img" "main main";
     }
-}
-
-.card-img {
-    grid-area: img;
-    img {
-        width: 100%;
+    .card-img {
+        position: initial;
+        img {
+            position: initial !important;
+            margin-left: auto;
+        }
     }
 }
 
@@ -33,4 +49,13 @@
     align-content: start;
     align-items: stretch;
     text-align: left;
+}
+
+#results {
+    margin-bottom: $spacing;
+}
+
+#saved-trips {
+    position: relative;
+    padding-bottom: 50px;
 }

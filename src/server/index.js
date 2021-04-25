@@ -14,25 +14,45 @@ app.use(bodyParser.json())
 app.use(express.static('dist'))
 console.log(path.join(__dirname))
 
-app.get('/', function(req, res) {
-    res.sendFile(path.resolve('dist/index.html'))
-})
-
-// designates what port the app will listen to for incoming requests
-const port = 8081 || process.env.port
-app.listen(port, function() {
-    console.log(`Example app listening on port ${port}!`)
-})
-
 // server routes
-app.get('/data', (req, res) => {
-    res.send(projectData);
-});
+const projectData = {
+    trips: []
+}
 
-app.post('/addData', (req, res) => {
-    projectData = {...req.body };
-    console.log(projectData);
-});
+app.get('/', function(req, res) {
+    res.status(200).sendFile(path.resolve('dist/index.html'))
+})
+
+app.get('/trips', (req, res) => {
+    res.status(200).send(projectData);
+})
+
+app.get('/clear', (req, res) => {
+    projectData.trips = []
+    res.status(200).send({ code: 200, status: 'Data Cleared Successfully' })
+})
+
+app.post('/addtrip', (req, res) => {
+    if (!checkSameTrip(req.body)) {
+        projectData.trips.push(req.body)
+        console.log(projectData)
+        res.status(201).send({ code: 201, status: 'CREATED' })
+    } else {
+        res.status(202).send({ code: 202, status: 'ACCEPTED' })
+    }
+})
+
+app.post('/removetrip', (req, res) => {
+    const index = checkSameTrip(req.body)
+    if (index) {
+        removeItem(projectData.trips[index])
+        console.log(projectData)
+        res.status(202).send({ code: 202, status: 'DELETED' })
+    } else {
+        res.status(200).send({ code: 200, status: 'OK' })
+    }
+})
+
 
 app.post('/loc', async(req, res) => {
     await getLocation(req.body.place).then(data => {
@@ -88,23 +108,62 @@ async function getImage(city, country, key = process.env.PIXABAY_API_KEY) {
     try {
         let data = await res.json()
         const totalHits = data.hits.length
+        const randInt = randomInt(totalHits)
         if (totalHits == 0) {
             res = await fetch(`https://pixabay.com/api/?key=${key}&q=${country}&image_type=photo&pretty=true`)
             if (res.ok) {
                 data = await res.json()
-                return { url: data.hits[randomInt(totalHits)].webformatURL }
+                return {
+                    url: data.hits[randInt].webformatURL,
+                    abs: heightGreater(data.hits[randInt].webformatHeight, data.hits[randInt].webformatWidth)
+                }
             }
         }
-        return { url: data.hits[randomInt(totalHits)].webformatURL }
+        return {
+            url: data.hits[randInt].webformatURL,
+            abs: heightGreater(data.hits[randInt].webformatHeight, data.hits[randInt].webformatWidth)
+        }
     } catch (e) {
         console.log(`Error while fetching api in getImage func: \n${e}`)
     }
 }
 
-// helper function
+// helper functions
+
 // chooses random integer from 0 to the input integer
 function randomInt(i) {
     return Math.floor(Math.random() * i)
 }
+// Compares Width and Height and returns true if height is greater than the width
+function heightGreater(h, w) {
+    if (Math.max(h, w) === h) return true
+    return false
+}
+// Check for the same trip object
+function checkSameTrip(obj, trips = projectData.trips) {
+    let index = 0
+    for (let t of trips) {
+        if (obj.location === t.location &&
+            obj.daysLeft === t.daysLeft &&
+            obj.duration === t.duration
+        ) return index
+        index++
+    }
+    return 0
+}
+// removes specific item from array 
+function removeItem(arr, value) {
+    var index = arr.indexOf(value);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+    return arr;
+}
 
-module.exports = app
+module.exports = {
+    app,
+    randomInt,
+    heightGreater,
+    checkSameTrip,
+    removeItem
+}
