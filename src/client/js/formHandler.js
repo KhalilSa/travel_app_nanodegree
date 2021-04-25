@@ -2,14 +2,27 @@ const alertify = require('alertifyjs')
 const lodash = require('lodash')
 
 document.addEventListener('DOMContentLoaded', () => {
+    // add event listener to submit button
+    document.getElementById('submit').addEventListener('click', handleSubmit)
+    document.getElementById('form').addEventListener('submit', handleSubmit)
+
+    // For changing input size accordingly
+    let root = document.documentElement;
+    root.style.setProperty('--width', window.outerWidth + "px");
+    root.style.setProperty('--height', window.outerHeight + "px");
+    window.addEventListener("resize", e => {
+        root.style.setProperty('--width', window.outerWidth + "px");
+        root.style.setProperty('--height', window.outerHeight + "px");
+    });
     // animations slide up for the header and fade in/ fade out for the form
     $('#add-trip').click(() => {
-            $('#form').toggle('fast')
-            $('header').first().animate({ marginTop: 0 }, 500, () => {
-                $(this).css({ marginTop: '' })
-            })
+        $('#form').toggle('fast')
+        $('header').first().animate({ marginTop: 0 }, 500, () => {
+            $(this).css({ marginTop: '' })
         })
-        // Clear local storage when the clear All div is clicked
+    })
+
+    // Clear local storage when the clear All div is clicked
     setTimeout(() => {
         document.getElementById('clear').addEventListener('click', (event) => {
             event.preventDefault()
@@ -21,12 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             localStorage.clear()
         })
-    }, 3000)
+    }, 3500);
+    // hide found result string on refresh
     $(document).on('', (event) => {
-            event.preventDefault()
-            $('.re-st').first().hide('fast')
-        })
-        // Load Saved
+        event.preventDefault()
+        $('.re-st').first().hide('fast')
+    });
+    // Load Saved
     Client.loadSaved()
 })
 
@@ -53,7 +67,6 @@ async function handleSubmit(event) {
         postData('http://localhost:8081/loc', { place: locationName })
             .then(info => {
                 trip.location += `, ${info.cn}`
-                trip.cc = info.cc
                 return info
             })
             .then(loc =>
@@ -127,7 +140,6 @@ function saveBtnHandler(trp) {
                     Client.updateUI(trip, Client.savedTripsElm)
                     let tripClone = lodash.cloneDeep(trip)
                     tripsArray.push(tripClone)
-                    console.log(tripsArray)
                     localStorage.setItem('trips', JSON.stringify(tripsArray))
                 } else {
                     alertify.message('Trip Already Saved')

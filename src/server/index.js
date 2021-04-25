@@ -19,10 +19,6 @@ const projectData = {
     trips: []
 }
 
-app.get('/', function(req, res) {
-    res.status(200).sendFile(path.resolve('dist/index.html'))
-})
-
 app.get('/trips', (req, res) => {
     res.status(200).send(projectData);
 })
@@ -104,13 +100,13 @@ async function getWeather(loc, current, key = process.env.WEATHERBIT_API_KEY, un
 
 // Pixabay API Request Function
 async function getImage(city, country, key = process.env.PIXABAY_API_KEY) {
-    let res = await fetch(`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo&pretty=true`)
+    let res = await fetch(`https://pixabay.com/api/?key=${key}&q=${city}&image_type=photo&category=places&pretty=true`)
     try {
         let data = await res.json()
         const totalHits = data.hits.length
         const randInt = randomInt(totalHits)
         if (totalHits == 0) {
-            res = await fetch(`https://pixabay.com/api/?key=${key}&q=${country}&image_type=photo&pretty=true`)
+            res = await fetch(`https://pixabay.com/api/?key=${key}&q=${country}&image_type=photo&category=places&pretty=true`)
             if (res.ok) {
                 data = await res.json()
                 return {

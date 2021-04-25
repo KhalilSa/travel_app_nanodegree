@@ -19,8 +19,9 @@ textarea {
     border-radius: $border-radius;
     color: $blured-blue;
     vertical-align: middle;
-    min-width: 300px;
-    max-width: 540px;
+    width: calc( var(--width) - 50px);
+    min-width: 100px;
+    max-width: $input-max-width;
     min-height: 36px;
     letter-spacing: 0.02em;
     box-shadow: inset 0px 2px 2px -1px rgba($color: $dark-blue, $alpha: 0.15);
@@ -43,7 +44,6 @@ textarea {
 input[type=submit] {
     background-color: $light-orange;
     padding: 5px 20px;
-    width: 300px;
     line-height: 16px;
     margin-top: 18px;
     border: 2px solid transparent;
@@ -70,15 +70,9 @@ input[type=submit] {
     animation-play-state: running;
 }
 
-@media (max-width: 320px) {
-    input[type=text] {
-        min-width: 150px;
-        width: 175px;
-    }
-    input[type=password],
-    input[type=date],
-    textarea {
-        min-width: 150px;
+@media (max-width: $input-max-width + 55) {
+    input[type=submit] {
+        right: 24px;
     }
 }
 

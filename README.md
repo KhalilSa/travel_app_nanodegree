@@ -69,11 +69,17 @@ git clone https://github.com/KhalilSa/travel_app_nanodegree
 ```
 npm i
 ```
-3. Build &amp; Start the server
+3. Create `.env` file and add
+```
+GEONAMES_KEY=<Your Username>
+WEATHERBIT_API_KEY=<Your Weatherbit api key>
+PIXABAY_API_KEY=<Your Pixabay api key>
+```
+4. Build &amp; Start the server
 ```
 npm build
 ```
-4. Setup the environment development or production
+5. Setup the environment development or production
 ```
 npm run build-dev
 ```
@@ -81,7 +87,7 @@ or
 ```
 npm run build-prod
 ```
-5. Test with Jest
+6. Test with Jest
 ```
 npm run test
 ```

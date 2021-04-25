@@ -6,7 +6,7 @@ import { randomInt, heightGreater } from '../server/index'
 describe("Testing Express server", () => {
     test("It should return 200 Ok to the GET method", () => {
             return request
-                .get("/")
+                .get("/trips")
                 .then(res => {
                     expect(res.statusCode).toBe(200)
                 })
@@ -32,12 +32,13 @@ describe("Testing Helper functions", () => {
             expect(randomInt(10)).toBeGreaterThanOrEqual(0)
             expect(randomInt(10)).toBeLessThanOrEqual(10)
         }),
-        test.concurrent.only.each([
-            [628, 220, true],
-            [1262, 635, true],
-            [1200, 2100, false],
-        ])('Return true if Height(%i) greater than Width(%i) and false otherwise',
-            async(a, b, expected) => {
-                expect(heightGreater(a, b)).toBe(expected)
-            })
+        test.each `
+        height  | width   | result
+        ${628}  | ${220}  | ${true}  
+        ${1262} | ${2100} | ${false}    
+        ${1200} | ${2100} | ${false}       
+        // add new test cases here
+    ` ('Return true if $height greater than $width and false otherwise', ({ height, width, result }) => {
+            expect(heightGreater(height, width)).toBe(result)
+        })
 })

@@ -19,9 +19,9 @@
     <header class="header">
         <h2>Travel Planner</h2>
         <div class="tooltip">
-            <button class="add-btn icon-btn" id="add-trip">
-                <div class="add-icon"></div>
-                <div class="btn-txt">Add Trip</div>
+            <button class="add-btn icon-btn tooltip" id="add-trip">
+                <span class="add-icon"></span>
+                <span class="btn-txt">Add Trip</span>
             </button>
             <span class="tooltip-txt">Click To Add New Trip</span>
         </div>
@@ -29,25 +29,25 @@
 
     <main>
         <section>
-            <form id="form" onsubmit="return Client.handleSubmit(event)">
+            <form id="form">
                 <div class="form-group">
                     <label for="location">Trip To: </label>
-                    <input type="text" id="location" placeholder="Enter Location" required></input>
+                    <input type="text" id="location" placeholder="Enter Location" required>
                 </div>
                 <div class="form-group">
                     <label for="start">Departing: </label>
-                    <input type="date" id="start" name="trip-start" required></input>
+                    <input type="date" id="start" name="trip-start" required>
                 </div>
                 <div class="form-group">
                     <label for="end">Return:</label>
-                    <input type="date" id="end" name="trip-end" required></input>
+                    <input type="date" id="end" name="trip-end" required>
                 </div>
-                <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                <input type="submit" name="submit" id="submit" value="submit">
             </form>
         </section>
 
         <section>
-            <strong class="re-st" style="display:none;">Trips Found:</strong>
+            <h6 class="re-st" style="display:none;">Trips Found:</h6>
             <div id="results">
             </div>
             <strong class="re-st" style="display:none;" id="sv-tr">Saved Trips:</strong>
@@ -58,11 +58,11 @@
     </main>
 
     <footer>
-        <span>Travel Planner By Khalil Sa &copy 2021</span>
+        <span>Travel Planner By Khalil Sa &amp; 2021</span>
         <span class="r-ft-sp">Using Geonames, Weatherbit, And Pixabay APIs</span>
     </footer>
 
-    <!-- <script>
+    <script>
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
@@ -70,7 +70,7 @@
                 navigator.serviceWorker.register('/service-worker.js');
             });
         }
-    </script> -->
+    </script>
 
 </body>
 

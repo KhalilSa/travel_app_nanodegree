@@ -19,7 +19,7 @@ function updateUI(trip, elm = results) {
                 ${saveBtn}
                 <button class="btn btn-remove">Remove Trip</button>
             </div>
-            <span>${trip.location} is ${trip.DaysLeft} days away</span>
+            <span>${trip.location} is ${trip.daysLeft} days away</span>
             <span>Typical weather for then is:</span>
             <span class="small-txt">Temperature - ${trip.temp}, Wind Speed - ${trip.win}</span>
             <span class="small-txt">Mostly ${trip.wd} throughout the day</span>
