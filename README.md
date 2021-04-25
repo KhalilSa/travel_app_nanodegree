@@ -97,6 +97,8 @@ npm run test
 * [Jest](https://jestjs.io/) - Testing suit
 * [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers) - For offline capability
 
+## Test
+Actually I wrote some tests but they seem to fail for some reason, to be honest I need some help in writing more meaningful tests.
 
 ## Screenshots
 That's how the page looks like:

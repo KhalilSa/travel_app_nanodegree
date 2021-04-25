@@ -1,7 +1,7 @@
 const supertest = require("supertest")
 const { app } = require("../server/index")
 const request = supertest(app)
-import { randomInt, heightGreater, checkSameTrip } from '../server/index'
+import { randomInt, heightGreater } from '../server/index'
 
 describe("Testing Express server", () => {
     test("It should return 200 Ok to the GET method", () => {
@@ -27,17 +27,17 @@ describe("Testing Express server", () => {
         })
 })
 
-// describe("Testing Helper functions", () => {
-//     test("It should return integer in the interval [0, 10]", () => {
-//             expect(randomInt(10)).toBeGreaterThanOrEqual(0)
-//             expect(randomInt(10)).toBeLessThanOrEqual(10)
-//         }),
-//         test.concurrent.only.each([
-//             [628, 220, true],
-//             [1262, 635, true],
-//             [1200, 2100, false],
-//         ])('Return true if Height(%i) greater than Width(%i) and false otherwise',
-//             async(a, b, expected) => {
-//                 expect(heightGreater(a, b)).toBe(expected)
-//             })
-// })
+describe("Testing Helper functions", () => {
+    test("It should return integer in the interval [0, 10]", () => {
+            expect(randomInt(10)).toBeGreaterThanOrEqual(0)
+            expect(randomInt(10)).toBeLessThanOrEqual(10)
+        }),
+        test.concurrent.only.each([
+            [628, 220, true],
+            [1262, 635, true],
+            [1200, 2100, false],
+        ])('Return true if Height(%i) greater than Width(%i) and false otherwise',
+            async(a, b, expected) => {
+                expect(heightGreater(a, b)).toBe(expected)
+            })
+})
