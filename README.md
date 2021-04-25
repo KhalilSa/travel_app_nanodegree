@@ -111,6 +111,9 @@ That's how the page looks like:
 ![Screenshot of the travel planner](/screenshots/travelplannerscreenshot1.png)
 ![Another screenshot for the travel planner](/screenshots/travelplannerscreenshot2.png)
 ![Another screenshot for the travel planner](/screenshots/travelplannerscreenshot3.png)
+![Another screenshot for the travel planner](/screenshots/travelplannerscreenshot4.png)
+![Another screenshot for the travel planner](/screenshots/travelplannerscreenshot5.png)
+![Another screenshot for the travel planner](/screenshots/travelplannerscreenshot6.png)
 
 ## License
 This project is licensed under the MIT License - see the `LICENSE` file for details
