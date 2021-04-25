@@ -105,4 +105,4 @@ That's how the page looks like:
 ![Another screenshot for the travel planner](/screenshots/travelplannerscreenshot3.png)
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the `LICENSE` file for details
