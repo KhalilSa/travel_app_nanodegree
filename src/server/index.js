@@ -159,7 +159,5 @@ function removeItem(arr, value) {
 module.exports = {
     app,
     randomInt,
-    heightGreater,
-    checkSameTrip,
-    removeItem
+    heightGreater
 }

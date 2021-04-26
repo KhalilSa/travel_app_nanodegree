@@ -1,7 +1,7 @@
+require("@babel/polyfill");
 const supertest = require("supertest")
-const { app } = require("../server/index")
+const { app, randomInt, heightGreater } = require("../server/index")
 const request = supertest(app)
-import { randomInt, heightGreater } from '../server/index'
 
 describe("Testing Express server", () => {
     test("It should return 200 Ok to the GET method", () => {

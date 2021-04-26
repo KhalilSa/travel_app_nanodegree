@@ -47,7 +47,7 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false,
-            cleanOnceBeforeBuildPatterns: [path.join(__dirname, "dist/**/*")],
+            cleanOnceBeforeBuildPatterns: [path.join(__dirname, "dist/**/*")]
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',

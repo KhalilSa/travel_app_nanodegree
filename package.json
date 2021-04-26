@@ -24,6 +24,7 @@
     },
     "homepage": "https://github.com/KhalilSa/travel_app_nanodegree#readme",
     "dependencies": {
+        "@babel/polyfill": "^7.12.1",
         "alertifyjs": "^1.13.1",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
