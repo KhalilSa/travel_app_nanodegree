@@ -104,7 +104,12 @@ npm run test
 * [Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers) - For offline capability
 
 ## Test
-Actually I wrote some tests but they seem to fail for some reason, to be honest I need some help in writing more meaningful tests.
+To test the application, run
+```
+npm run test
+```
+They seem to pass in my case:
+![Test Screenshot](/screenshots/test.png)
 
 ## Screenshots
 That's how the page looks like:

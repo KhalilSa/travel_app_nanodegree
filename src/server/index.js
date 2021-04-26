@@ -31,7 +31,6 @@ app.get('/clear', (req, res) => {
 app.post('/addtrip', (req, res) => {
     if (!checkSameTrip(req.body)) {
         projectData.trips.push(req.body)
-        console.log(projectData)
         res.status(201).send({ code: 201, status: 'CREATED' })
     } else {
         res.status(202).send({ code: 202, status: 'ACCEPTED' })
@@ -42,7 +41,6 @@ app.post('/removetrip', (req, res) => {
     const index = checkSameTrip(req.body)
     if (index) {
         removeItem(projectData.trips[index])
-        console.log(projectData)
         res.status(202).send({ code: 202, status: 'DELETED' })
     } else {
         res.status(200).send({ code: 200, status: 'OK' })
